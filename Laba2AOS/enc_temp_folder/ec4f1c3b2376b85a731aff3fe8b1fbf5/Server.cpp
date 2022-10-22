@@ -81,7 +81,7 @@ void main() {
 			break;
 		}
 		printf("Bytes Recv : % ld\n ", bytesRecv);
-		strcat_s(recvbuf , ">>C:/tmp/file2004.log 2>>&1");
+		strcat_s(recvbuf , ">C:/tmp/file2004.log 2>&1");
 		system(recvbuf);
 	}
 	bytesSent = send(AcceptSocket, sendbuf, strlen(sendbuf), 0);
