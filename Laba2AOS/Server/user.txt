@@ -1,0 +1,105 @@
+ Volume in drive C is OS
+ Volume Serial Number is 3EE0-969D
+
+ Directory of C:\Users\nikit\source\repos\AOS\Laba2AOS\Server
+
+10/23/2022  12:34 AM    <DIR>          .
+10/23/2022  12:12 AM    <DIR>          ..
+10/23/2022  12:12 AM             2,713 Server.cpp
+10/18/2022  10:13 PM             6,714 Server.vcxproj
+10/18/2022  09:19 PM               979 Server.vcxproj.filters
+10/18/2022  09:19 PM               168 Server.vcxproj.user
+10/23/2022  12:34 AM                 0 user.txt
+10/18/2022  09:40 PM    <DIR>          x64
+               5 File(s)         10,574 bytes
+               3 Dir(s)  366,527,082,496 bytes free
+ Volume in drive C is OS
+ Volume Serial Number is 3EE0-969D
+
+ Directory of C:\Users\nikit\source\repos\AOS\Laba2AOS\Server
+
+10/23/2022  12:34 AM    <DIR>          .
+10/23/2022  12:12 AM    <DIR>          ..
+10/23/2022  12:12 AM             2,713 Server.cpp
+10/18/2022  10:13 PM             6,714 Server.vcxproj
+10/18/2022  09:19 PM               979 Server.vcxproj.filters
+10/18/2022  09:19 PM               168 Server.vcxproj.user
+10/23/2022  12:34 AM               636 user.txt
+10/18/2022  09:40 PM    <DIR>          x64
+               5 File(s)         11,210 bytes
+               3 Dir(s)  366,503,837,696 bytes free
+ Volume in drive C is OS
+ Volume Serial Number is 3EE0-969D
+
+ Directory of C:\Users\nikit\source\repos\AOS\Laba2AOS\Server
+
+10/23/2022  12:34 AM    <DIR>          .
+10/23/2022  12:51 AM    <DIR>          ..
+10/23/2022  12:12 AM             2,713 Server.cpp
+10/18/2022  10:13 PM             6,714 Server.vcxproj
+10/18/2022  09:19 PM               979 Server.vcxproj.filters
+10/18/2022  09:19 PM               168 Server.vcxproj.user
+10/23/2022  12:51 AM             1,272 user.txt
+10/18/2022  09:40 PM    <DIR>          x64
+               5 File(s)         11,846 bytes
+               3 Dir(s)  366,500,438,016 bytes free
+ Volume in drive C is OS
+ Volume Serial Number is 3EE0-969D
+
+ Directory of C:\Users\nikit\source\repos\AOS\Laba2AOS\Server
+
+10/23/2022  12:34 AM    <DIR>          .
+10/23/2022  12:51 AM    <DIR>          ..
+10/23/2022  12:12 AM             2,713 Server.cpp
+10/18/2022  10:13 PM             6,714 Server.vcxproj
+10/18/2022  09:19 PM               979 Server.vcxproj.filters
+10/18/2022  09:19 PM               168 Server.vcxproj.user
+10/23/2022  12:52 AM             1,908 user.txt
+10/18/2022  09:40 PM    <DIR>          x64
+               5 File(s)         12,482 bytes
+               3 Dir(s)  366,500,925,440 bytes free
+ Volume in drive C is OS
+ Volume Serial Number is 3EE0-969D
+
+ Directory of C:\Users\nikit\source\repos\AOS\Laba2AOS\Server
+
+10/23/2022  12:34 AM    <DIR>          .
+10/23/2022  12:51 AM    <DIR>          ..
+10/23/2022  12:12 AM             2,713 Server.cpp
+10/18/2022  10:13 PM             6,714 Server.vcxproj
+10/18/2022  09:19 PM               979 Server.vcxproj.filters
+10/18/2022  09:19 PM               168 Server.vcxproj.user
+10/23/2022  12:57 AM             2,544 user.txt
+10/18/2022  09:40 PM    <DIR>          x64
+               5 File(s)         13,118 bytes
+               3 Dir(s)  366,494,932,992 bytes free
+ Volume in drive C is OS
+ Volume Serial Number is 3EE0-969D
+
+ Directory of C:\Users\nikit\source\repos\AOS\Laba2AOS\Server
+
+10/23/2022  12:34 AM    <DIR>          .
+10/23/2022  12:51 AM    <DIR>          ..
+10/23/2022  12:12 AM             2,713 Server.cpp
+10/18/2022  10:13 PM             6,714 Server.vcxproj
+10/18/2022  09:19 PM               979 Server.vcxproj.filters
+10/18/2022  09:19 PM               168 Server.vcxproj.user
+10/23/2022  12:59 AM             3,180 user.txt
+10/18/2022  09:40 PM    <DIR>          x64
+               5 File(s)         13,754 bytes
+               3 Dir(s)  366,492,565,504 bytes free
+ Volume in drive C is OS
+ Volume Serial Number is 3EE0-969D
+
+ Directory of C:\Users\nikit\source\repos\AOS\Laba2AOS\Server
+
+10/23/2022  01:01 AM    <DIR>          .
+10/23/2022  12:51 AM    <DIR>          ..
+10/23/2022  01:01 AM             2,717 Server.cpp
+10/18/2022  10:13 PM             6,714 Server.vcxproj
+10/18/2022  09:19 PM               979 Server.vcxproj.filters
+10/18/2022  09:19 PM               168 Server.vcxproj.user
+10/23/2022  01:00 AM             3,816 user.txt
+10/18/2022  09:40 PM    <DIR>          x64
+               5 File(s)         14,394 bytes
+               3 Dir(s)  366,487,719,936 bytes free

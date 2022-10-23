@@ -2,6 +2,11 @@
 #include "winsock2.h";
 #include "Ws2tcpip.h";
 #include <tchar.h>;
+#include <fstream>
+#include <iostream>
+
+using namespace std;
+
 void main() 
 {
 	//----------------------
@@ -42,11 +47,37 @@ void main()
 	int bytesSent;
 	int bytesRecv = SOCKET_ERROR;
 	//char sendbuf[3200] = "dir\ndir\ndir";
-	char sendbuf[3200] = "dir";
-	char recvbuf[32] = "";
+	//char sendbuf[3200] = "dir";
+	char recvbuf[3200] = "";
 	//----------------------
 	// Send and receive data.
-	bytesSent = send(ConnectSocket, sendbuf, strlen(sendbuf) + 1, 0);
+
+	char command[32000];
+	char command1[320];
+	
+	fstream file;
+	file.open("user.txt");
+	
+	while (!file.eof())
+	{
+		file >> command1;
+		if (file.eof())
+		{
+			//strcat_s(command, "\n");
+			strcat_s(command, command1);
+			strcat_s(command, ">>C:/tmp/file2004.log 2>>&1");
+		}
+		else
+		{
+			//strcat_s(command, command);
+			strcat_s(command, command1);
+			strcat_s(command, ">>C:/tmp/file2004.log 2>>&1\n");
+		}
+	}
+	cout << command;
+	bytesSent = send(ConnectSocket, command, strlen(command) + 1, 0);
+	
+	
 	printf("Bytes Sent : % ld\n " , bytesSent);
 	while (bytesRecv == SOCKET_ERROR) {
 		bytesRecv = recv(ConnectSocket, recvbuf, 32, 0);
