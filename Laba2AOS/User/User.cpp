@@ -7,6 +7,8 @@
 
 using namespace std;
 
+
+char recvbuf[320000] = "";
 void main() 
 {
 	//----------------------
@@ -48,7 +50,7 @@ void main()
 	int bytesRecv = SOCKET_ERROR;
 	//char sendbuf[3200] = "dir\ndir\ndir";
 	//char sendbuf[3200] = "dir";
-	char recvbuf[3200] = "";
+	
 	//----------------------
 	// Send and receive data.
 
@@ -60,25 +62,28 @@ void main()
 	
 	while (!file.eof())
 	{
-		file >> command1;
-		if (file.eof())
+		file >> command;
+		//strcat_s(command, command1);
+		//strcat_s(command, ">>C:/tmp/file2004.log 2>>&1\n");
+		bytesSent = send(ConnectSocket, command, strlen(command) + 1, 0);
+		if (bytesSent != strlen(command) + 1)
 		{
-			//strcat_s(command, "\n");
-			strcat_s(command, command1);
-			strcat_s(command, ">>C:/tmp/file2004.log 2>>&1");
+			printf("Error of sending bytes: %ld\n ", bytesSent);
+			break;
 		}
-		else
-		{
-			//strcat_s(command, command);
-			strcat_s(command, command1);
-			strcat_s(command, ">>C:/tmp/file2004.log 2>>&1\n");
+		printf("Bytes Sent : % ld\n ", bytesSent);
+		bytesRecv = recv(ConnectSocket, recvbuf, sizeof(recvbuf), 0);
+		if (bytesRecv == 0 || bytesRecv == WSAECONNRESET) {
+			printf("Connection Closed.\n ");
+			break;
 		}
+		printf("Bytes Recv : % ld\n ", bytesRecv);
+		printf("recvbuf: % s\n ", recvbuf);
 	}
-	cout << command;
-	bytesSent = send(ConnectSocket, command, strlen(command) + 1, 0);
 	
 	
-	printf("Bytes Sent : % ld\n " , bytesSent);
+	
+	/*printf("Bytes Sent : % ld\n " , bytesSent);
 	while (bytesRecv == SOCKET_ERROR) {
 		bytesRecv = recv(ConnectSocket, recvbuf, 32, 0);
 		if (bytesRecv == 0 || bytesRecv == WSAECONNRESET) {
@@ -86,7 +91,7 @@ void main()
 			break;
 		}
 		printf("Bytes Recv : % ld\n " , bytesRecv);
-	}
+	}*/
 	WSACleanup();
 	return;
 }

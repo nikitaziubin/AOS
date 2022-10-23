@@ -3,6 +3,8 @@
 #include "Ws2tcpip.h";
 #include <tchar.h>;
 
+char sendbuf[320000] = "Client: Sending data.";
+char recvbuf[320000] = "";
 void main() 
 {
 
@@ -68,26 +70,38 @@ void main()
 	}
 
 	int bytesSent;
-	int bytesRecv = SOCKET_ERROR;
-	char sendbuf[320000] = "Client: Sending data.";
-	char recvbuf[320000] = "";
+	int bytesRecv = 0;
+	
 
 	//>file 2>&1	
 	//----------------------
 	// Send and receive data.
-	while (bytesRecv == SOCKET_ERROR)
+	while (bytesRecv != SOCKET_ERROR)
 	{
 		bytesRecv = recv(AcceptSocket, recvbuf, 32, 0);
-		if (bytesRecv == 0 || bytesRecv == WSAECONNRESET) {
+		if (bytesRecv == 0 || bytesRecv == WSAECONNRESET ) {
 			printf("Connection Closed.\n ");
 			break;
 		}
+		else if (bytesRecv == SOCKET_ERROR)
+		{
+			printf("recv: %d\n", WSAGetLastError());
+		}
 		printf("Bytes Recv : % ld\n ", bytesRecv);
-		//strcat_s(recvbuf , ">>C:/tmp/file2004.log 2>>&1");
+		printf("recvbuf: % s\n ", recvbuf);
+		//strcat_s(recvbuf , ">>C:/tmp/file2004.log 2>>&1\n");
+		strcat_s(recvbuf ,">C:/tmp/file2004.log 2>&1\n");                  //to do
 		system(recvbuf);
+
+		bytesSent = send(AcceptSocket, "command", strlen("command") + 1, 0);
+		if (bytesSent != strlen("command") + 1)
+		{
+			printf("Error of sending bytes: %ld\n ", bytesSent);
+			break;
+		}
+		printf("Bytes Sent : % ld\n ", bytesSent);
+
 	}
-	bytesSent = send(AcceptSocket, sendbuf, strlen(sendbuf), 0);
-	printf("Bytes Sent : % ld\n ", bytesSent);
 	WSACleanup();
 	return;
 }
