@@ -7,9 +7,11 @@
 
 using namespace std;
 
-char sendbuf[320000] = "Client: Sending data.";
+#define SOCKET_PORT_NUMBER 60000
 
+char sendbuf[320000] = "";
 char recvbuf[320000] = "";
+
 void main() 
 {
 
@@ -42,7 +44,7 @@ void main()
 	//InetPton(AF_INET, _T("192.168.1.1"), &service.sin_addr.s_addr);
 	//InetPton(AF_INET, _T("172.20.10.5"), &service.sin_addr.s_addr);
 	InetPton(AF_INET, _T("127.0.0.1"), &service.sin_addr.s_addr);
-	service.sin_port = htons(60000);
+	service.sin_port = htons(SOCKET_PORT_NUMBER);
 	int bindresult = bind(ListenSocket, (SOCKADDR*)&service, sizeof(service));
 	DWORD bindresultDWORD = GetLastError();
 	if (bindresult == SOCKET_ERROR) {
@@ -74,12 +76,12 @@ void main()
 		break;
 	}
 
-	int bytesSent;
+	int bytesSent = 0;
 	int bytesRecv = 0;
 	
 	while (bytesRecv != SOCKET_ERROR)
 	{
-		bytesRecv = recv(AcceptSocket, recvbuf, 32, 0);
+		bytesRecv = recv(AcceptSocket, recvbuf, sizeof(recvbuf), 0);
 		if (bytesRecv == 0 || bytesRecv == WSAECONNRESET ) {
 			printf("Connection Closed.\n ");
 			break;
@@ -97,10 +99,9 @@ void main()
 		fstream file;
 		file.open("C:/tmp/file2004.log");
 		int i = 0;
-		while (!file.eof())
+		while (!file.eof() && sizeof(sendbuf) > i)
 		{
-			file.get(sendbuf[i]);
-			i++;
+			file.get(sendbuf[i++]);//++i 
 		}
 		sendbuf[i] = '\0';
 		file.close();

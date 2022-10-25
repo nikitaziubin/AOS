@@ -4,8 +4,10 @@
 #include <tchar.h>;
 #include <fstream>
 #include <iostream>
+
 using namespace std;
 
+#define SOCKET_PORT_NUMBER 60000
 char recvbuf[320000] = "";
 void main(int argc, char* argv[])
 {
@@ -17,6 +19,7 @@ void main(int argc, char* argv[])
 	}
 	else if (argc == 2)
 	{
+		filename[0] = '\0';
 		const size_t cSize = strlen(argv[1]) + 1;
 		size_t a = 0;
 		mbstowcs_s(&a, ip, argv[1], cSize);
@@ -53,7 +56,7 @@ void main(int argc, char* argv[])
 		
 	//clientService.sin_addr.s_addr = inet_addr("127.0.0.1");
 	InetPton(AF_INET, ip, &clientService.sin_addr.s_addr);
-	clientService.sin_port = htons(60000);
+	clientService.sin_port = htons(SOCKET_PORT_NUMBER);
 	//----------------------
 	// Connect to server.
 	if (connect(ConnectSocket, (SOCKADDR*) &clientService, sizeof(clientService)) == SOCKET_ERROR) {
@@ -72,7 +75,7 @@ void main(int argc, char* argv[])
 	// Send and receive data.
 
 	char command[32000];
-	char End[32000] = "E";
+	char end[2] = "e";
 	//string a;
 	//cout << "Chose file(f) or command(c): ";
 	//cin >> a;
@@ -83,8 +86,10 @@ void main(int argc, char* argv[])
 		while (!file.eof())
 		{
 			file >> command;
-			//strcat_s(command, command1);
-			//strcat_s(command, ">>C:/tmp/file2004.log 2>>&1\n");
+			if (strlen(command) == 0)
+			{
+				break;
+			}
 			bytesSent = send(ConnectSocket, command, strlen(command) + 1, 0);
 			if (bytesSent != strlen(command) + 1)
 			{
@@ -100,16 +105,15 @@ void main(int argc, char* argv[])
 			printf("Bytes Recv : % ld\n ", bytesRecv);
 			printf("recvbuf: % s\n ", recvbuf);
 		}
-	}
+	}	
 	else
 	{
-		
 		while (true)
 		{
 			cout << "Enter command: ";
 			cout << "To end press (e)" << endl;
 			cin >> command;
-			if (strlen(command) == strlen(End))
+			if (strcmp(command, end) == 0)
 			{
 				break;
 			}
