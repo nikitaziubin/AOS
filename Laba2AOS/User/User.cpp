@@ -7,7 +7,7 @@
 
 using namespace std;
 
-#define SOCKET_PORT_NUMBER 60000
+#define SOCKET_PORT_NUMBER 1028
 char recvbuf[320000] = "";
 void main(int argc, char* argv[])
 {

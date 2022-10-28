@@ -7,7 +7,7 @@
 
 using namespace std;
 
-#define SOCKET_PORT_NUMBER 60000
+#define SOCKET_PORT_NUMBER 1028
 
 char sendbuf[320000] = "";
 char recvbuf[320000] = "";
@@ -92,39 +92,26 @@ void main()
 		}
 		printf("Bytes Recv : % ld\n ", bytesRecv);
 		printf("recvbuf: % s\n ", recvbuf);
-		if (recvbuf[0] == 'W')
+		if (strcmp(recvbuf, "Who") == 0)
 		{
 			//strcat_s(recvbuf, "Nikita Ziubin K-27>>C:/tmp/file2004.log");                  //to do
 			system("echo Nikita Ziubin K-27 > C:/tmp/file2004.log");
-			fstream file; 
-			file.open("C:/tmp/file2004.log");
-			int i = 0;
-			while (!file.eof() && sizeof(sendbuf) > i)
-			{
-				file.get(sendbuf[i++]);//++i 
-			}
-			sendbuf[i] = '\0';
-			file.close();
-			bytesSent = send(AcceptSocket, sendbuf, strlen(sendbuf) + 1, 0);
 		}
 		else
 		{
 			strcat_s(recvbuf ,">C:/tmp/file2004.log 2>&1\n");                  //to do
 			system(recvbuf);
-
-			fstream file;
-			file.open("C:/tmp/file2004.log");
-			int i = 0;
-			while (!file.eof() && sizeof(sendbuf) > i)
-			{
-				file.get(sendbuf[i++]);//++i 
-			}
-			sendbuf[i] = '\0';
-			file.close();
-			bytesSent = send(AcceptSocket, sendbuf, strlen(sendbuf) + 1, 0);
-
-
 		}
+		fstream file;
+		file.open("C:/tmp/file2004.log");
+		int i = 0;
+		while (!file.eof() && sizeof(sendbuf) > i)
+		{
+			file.get(sendbuf[i++]);//++i 
+		}
+		sendbuf[i] = '\0';
+		file.close();
+		bytesSent = send(AcceptSocket, sendbuf, strlen(sendbuf) + 1, 0);
 		//strcat_s(recvbuf , ">>C:/tmp/file2004.log 2>>&1\n");
 
 		if (bytesSent != strlen(sendbuf) + 1)
